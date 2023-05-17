@@ -5,7 +5,7 @@ import App from "./App";
 describe('App', () => {
   it('renders headline', () => {
     render(<App />);
-    const headline = screen.getByText("It works and you found me");
+    const headline = screen.getByText("It works and you found me!");
     expect(headline).toBeInTheDocument();
   });
 });
