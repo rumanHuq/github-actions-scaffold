@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [ready_for_review,synchronize]
     branches: [main]
-    paths-ignore: ['.github/workflows/*']
+    paths-ignore: ['.github/workflows/**']
   workflow_dispatch:
 jobs:
   lint:
