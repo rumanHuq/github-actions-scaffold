@@ -1,8 +1,8 @@
 name: Deployment workflow
 on:
   pull_request:
-    # types: [ready_for_review,synchronize,edited]
-    # branches-ignore: [main]
+    types: [ready_for_review,synchronize,edited]
+    branches: [main]
     # paths-ignore: ['.github/workflows/*']
   workflow_dispatch:
 jobs:
