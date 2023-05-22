@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Get codes
-        uses: ./actions/prepare.yml
+        uses: .github/actions/prepare.yml
