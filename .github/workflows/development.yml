@@ -1,0 +1,11 @@
+name: Deployment workflow
+on:
+  pull_request:
+    types: [ready_for_review]
+  workflow_dispatch:
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Get codes
+        uses: actions/checkout@v3
