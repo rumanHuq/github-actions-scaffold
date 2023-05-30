@@ -1,11 +1,92 @@
 name: Deployment workflow
 on:
   pull_request:
-    types: [ready_for_review]
+    types: [ready_for_review,synchronize]
+    branches: [main]
+    paths-ignore: ['.github/workflows/**']
   workflow_dispatch:
+
 jobs:
   lint:
     runs-on: ubuntu-22.04
     steps:
       - name: Get codes
         uses: actions/checkout@v3
+      - name: Install Node@18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
+      - run: npm run lint
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Get codes
+        uses: actions/checkout@v3
+      - name: Install Node@18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
+      - run: npm run test
+  build:
+    needs: [lint, test]
+    runs-on: ubuntu-22.04
+    outputs:
+      script-file: ${{ steps.publish.outputs.script-file }}
+    steps:
+      - name: Get codes
+        uses: actions/checkout@v3
+      - name: Install Node@18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
+      - run: npm run build
+      - name: Publish JS file
+        id: publish
+        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: dist
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Get codes
+        uses: actions/checkout@v3
+      - name: Install Node@18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
+      - run: npm run build
+      - name: Upload artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
+          path: dist
+      - name: Output filename
+        run: echo "${{ needs.build.outputs.script-file }}"
