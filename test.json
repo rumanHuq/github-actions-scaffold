@@ -1,23 +1,72 @@
 {
-  "numTotalTestSuites": 1,
-  "numPassedTestSuites": 0,
-  "numFailedTestSuites": 1,
+  "numTotalTestSuites": 4,
+  "numPassedTestSuites": 4,
+  "numFailedTestSuites": 0,
   "numPendingTestSuites": 0,
-  "numTotalTests": 0,
-  "numPassedTests": 0,
-  "numFailedTests": 0,
+  "numTotalTests": 3,
+  "numPassedTests": 2,
+  "numFailedTests": 1,
   "numPendingTests": 0,
   "numTodoTests": 0,
-  "startTime": 1662469084119,
+  "startTime": 1685528572412,
   "success": false,
   "testResults": [
     {
-      "assertionResults": [],
-      "startTime": 1662469084119,
-      "endTime": 1662469084119,
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "failed test"
+          ],
+          "fullName": " failed test should fail",
+          "status": "failed",
+          "title": "should fail",
+          "duration": 4,
+          "failureMessages": [
+            "expected true to be false // Object.is equality"
+          ],
+          "location": {
+            "line": 3,
+            "column": 18
+          }
+        }
+      ],
+      "startTime": 1685528573340,
+      "endTime": 1685528573344,
+      "status": "failed",
+      "message": "",
+      "name": "/Users/majedulhoque/Documents/workspace/TS_PROJECT/my-vue-app/src/dummy.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "MainContent"
+          ],
+          "fullName": " MainContent should render a button",
+          "status": "passed",
+          "title": "should render a button",
+          "duration": 21,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "MainContent"
+          ],
+          "fullName": " MainContent should show the help area after clicking the button",
+          "status": "passed",
+          "title": "should show the help area after clicking the button",
+          "duration": 18,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1685528573473,
+      "endTime": 1685528573512,
       "status": "passed",
-      "message": "\u001b[0m\u001b[0m\n\u001b[0m\u001b[4m/Users/max/development/teaching/gh-flow/src/components/HelpBox.jsx\u001b[24m\u001b[0m\n\u001b[0m  \u001b[2m5:20\u001b[22m  \u001b[31merror\u001b[39m  'title' is missing in props validation  \u001b[2mreact/prop-types\u001b[22m\u001b[0m\n\u001b[0m  \u001b[2m5:27\u001b[22m  \u001b[31merror\u001b[39m  'text' is missing in props validation   \u001b[2mreact/prop-types\u001b[22m\u001b[0m\n\u001b[0m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m✖ 2 problems (2 errors, 0 warnings)\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m\u001b[22m\u001b[39m\u001b[0m",
-      "name": "/Users/max/development/teaching/gh-flow/src/components/MainContent.test.jsx"
+      "message": "",
+      "name": "/Users/majedulhoque/Documents/workspace/TS_PROJECT/my-vue-app/src/components/MainContent.test.jsx"
     }
   ]
 }
