@@ -1,8 +1,0 @@
-name: Debug information
-on: [workflow_dispatch, issues]
-jobs:
-  output_information:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Output github contexts
-        run: echo "${{ toJson(github) }}"
